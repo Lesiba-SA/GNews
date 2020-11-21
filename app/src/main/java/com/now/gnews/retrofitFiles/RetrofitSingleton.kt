@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-class retrofitSingleton {
+class RetrofitSingleton {
 
     companion object{
 

@@ -1,15 +1,15 @@
 package com.now.gnews.repository
 
-import com.now.gnews.retrofitFiles.retrofitSingleton
+import com.now.gnews.retrofitFiles.RetrofitSingleton
 
 class NewsRepo {
 
 
     suspend fun getAllNews(country: String, page: Int) =
-        retrofitSingleton.api.getAllNews(country, page)
+        RetrofitSingleton.api.getAllNews(country, page)
 
     suspend fun getNewsFromCat(country: String, page: Int, category: String) =
-        retrofitSingleton.api.getNewsFromCategory(country, page, category)
+        RetrofitSingleton.api.getNewsFromCategory(country, page, category)
 }
 
 

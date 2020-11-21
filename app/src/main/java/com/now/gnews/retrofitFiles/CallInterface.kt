@@ -14,7 +14,7 @@ interface CallInterface {
         @Query("page")
         page: Int = 1,
         @Query("apikey")
-        apikey: String = ""
+        apikey: String = "3b3f5a9fc1074c238a5332b1127648b2"
     ) : Response<ApiResponse>
 
     @GET("v2/everything")
@@ -26,6 +26,6 @@ interface CallInterface {
         @Query("category")
         category: String,
         @Query("apikey")
-        apikey: String = ""
+        apikey: String = "3b3f5a9fc1074c238a5332b1127648b2"
     ) : Response<ApiResponse>
 }
