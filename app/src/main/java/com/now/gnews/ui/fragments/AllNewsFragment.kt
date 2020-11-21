@@ -1,4 +1,4 @@
-package com.now.gnews.ui
+package com.now.gnews.ui.fragments
 
 import androidx.fragment.app.Fragment
 import com.now.gnews.R

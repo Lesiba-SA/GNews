@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/allNewsFragment"
-        android:name="com.now.gnews.ui.AllNewsFragment"
+        android:name="com.now.gnews.ui.fragments.AllNewsFragment"
         android:label="AllNewsFragment" >
         <action
             android:id="@+id/action_allNewsFragment_to_articleFragment"
@@ -13,7 +13,7 @@
     </fragment>
     <fragment
         android:id="@+id/categoryFragment"
-        android:name="com.now.gnews.ui.CategoryFragment"
+        android:name="com.now.gnews.ui.fragments.CategoryFragment"
         android:label="CategoryFragment" >
         <action
             android:id="@+id/action_categoryFragment_to_articleFragment"
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/categoryListFragment"
-        android:name="com.now.gnews.ui.CategoryListFragment"
+        android:name="com.now.gnews.ui.fragments.CategoryListFragment"
         android:label="CategoryListFragment" >
         <action
             android:id="@+id/action_categoryListFragment_to_categoryFragment"
@@ -29,10 +29,10 @@
     </fragment>
     <fragment
         android:id="@+id/articleFragment"
-        android:name="com.now.gnews.ui.ArticleFragment"
+        android:name="com.now.gnews.ui.fragments.ArticleFragment"
         android:label="ArticleFragment" />
     <fragment
         android:id="@+id/socialFragment"
-        android:name="com.now.gnews.ui.SocialFragment"
+        android:name="com.now.gnews.ui.fragments.SocialFragment"
         android:label="SocialFragment" />
 </navigation>
