@@ -2,6 +2,7 @@
 #Android News app (4Sure Assessment)
 
 Making use of newsapi.org API 
+
 Code written in Kotlin
 
 The app is a simple news app that allows user to browse news headlines and open the article within the app
