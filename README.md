@@ -1,5 +1,5 @@
 # GNews
-##Android News app (4Sure Assessment)
+#Android News app (4Sure Assessment)
 
 Making use of newsapi.org API 
 Code written in Kotlin
