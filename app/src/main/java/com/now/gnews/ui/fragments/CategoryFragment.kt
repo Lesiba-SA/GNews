@@ -13,7 +13,6 @@ import com.now.gnews.adapters.NewsAdapter
 import com.now.gnews.ui.MainActivity
 import com.now.gnews.ui.NewsViewModel
 import com.now.gnews.wrapper.Resource
-import kotlinx.android.synthetic.main.fragment_all_news.*
 import kotlinx.android.synthetic.main.fragment_category.*
 
 class CategoryFragment : Fragment(R.layout.fragment_category) {
@@ -34,7 +33,7 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
 
         viewModel.getNewsFromCategory("us", category)
 
-        viewModel.CategoryNews.observe(viewLifecycleOwner, Observer { response ->
+        viewModel.categoryNews.observe(viewLifecycleOwner, Observer { response ->
             when(response) {
                 is Resource.Success -> {
                     CateFragmentprogressBar.visibility = View.INVISIBLE

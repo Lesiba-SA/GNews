@@ -8,7 +8,6 @@ import android.net.NetworkCapabilities.*
 import android.os.Build
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.now.gnews.GnewsApplication
 import com.now.gnews.models.ApiResponse
@@ -18,21 +17,21 @@ import kotlinx.coroutines.launch
 import retrofit2.Response
 import java.io.IOException
 
-class NewsViewModel(application: Application,val newsRepo: NewsRepo) : AndroidViewModel(application) {
+class NewsViewModel(application: Application, val newsRepo: NewsRepo) : AndroidViewModel(application) {
 
 
   val allNews: MutableLiveData<Resource<ApiResponse>> = MutableLiveData()
     var pageNumber = 1
 
-    val CategoryNews: MutableLiveData<Resource<ApiResponse>> = MutableLiveData()
-    var CategoryPageNumber = 1
+    val categoryNews: MutableLiveData<Resource<ApiResponse>> = MutableLiveData()
+    var categoryPageNumber = 1
 
     init {
         getAllNews("us")
     }
 
 
-    fun getAllNews(country: String) = viewModelScope.launch {
+   fun getAllNews(country: String) = viewModelScope.launch {
         allNews.postValue(Resource.Loading())
         if(hasConnection()){
             try {
@@ -50,22 +49,22 @@ class NewsViewModel(application: Application,val newsRepo: NewsRepo) : AndroidVi
 
     }
 
-    fun getNewsFromCategory(country: String, category: String) = viewModelScope.launch {
-        CategoryNews.postValue(Resource.Loading())
+     fun getNewsFromCategory(country: String, category: String) = viewModelScope.launch {
+        categoryNews.postValue(Resource.Loading())
        if(hasConnection()) {
 
            try {
 
-               val response = newsRepo.getNewsFromCat(country, CategoryPageNumber, category)
-               CategoryNews.postValue(handleCategoryNewsResponse(response))
+               val response = newsRepo.getNewsFromCat(country, categoryPageNumber, category)
+               categoryNews.postValue(handleCategoryNewsResponse(response))
 
            } catch (t: Throwable){
                when(t) {
-                   is IOException -> CategoryNews.postValue(Resource.Error(" Network Failed"))
+                   is IOException -> categoryNews.postValue(Resource.Error(" Network Failed"))
                }
            }
        } else {
-           CategoryNews.postValue(Resource.Error(" No Internet Connection"))
+           categoryNews.postValue(Resource.Error(" No Internet Connection"))
        }
     }
 
