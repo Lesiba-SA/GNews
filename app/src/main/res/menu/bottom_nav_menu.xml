@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/allNewsFragment"
+        android:title="All News"
+        android:icon="@drawable/allnews_icon" />
+
+    <item android:id="@+id/categoryListFragment"
+        android:title="Category"
+        android:icon="@drawable/category_icon" />
+
+    <item android:id="@+id/socialFragment"
+        android:title="Social Media"
+        android:icon="@drawable/social_icon" />
+
+</menu>

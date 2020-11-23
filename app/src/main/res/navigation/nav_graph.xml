@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/allNewsFragment">
+
+    <fragment
+        android:id="@+id/allNewsFragment"
+        android:name="com.now.gnews.ui.fragments.AllNewsFragment"
+        android:label="AllNewsFragment">
+        <action
+            android:id="@+id/action_allNewsFragment_to_articleFragment"
+            app:destination="@id/articleFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.now.gnews.ui.fragments.CategoryFragment"
+        android:label="CategoryFragment" >
+        <action
+            android:id="@+id/action_categoryFragment_to_articleFragment"
+            app:destination="@id/articleFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <argument
+            android:name="CateArgs"
+            app:argType="com.now.gnews.data.CateListData" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoryListFragment"
+        android:name="com.now.gnews.ui.fragments.CategoryListFragment"
+        android:label="CategoryListFragment" >
+        <action
+            android:id="@+id/action_categoryListFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/socialFragment"
+        android:name="com.now.gnews.ui.fragments.SocialFragment"
+        android:label="SocialFragment" />
+    <fragment
+        android:id="@+id/articleFragment"
+        android:name="com.now.gnews.ui.fragments.ArticleFragment"
+        android:label="ArticleFragment">
+        <argument
+            android:name="article"
+            app:argType="com.now.gnews.models.Article" />
+    </fragment>
+
+</navigation>
