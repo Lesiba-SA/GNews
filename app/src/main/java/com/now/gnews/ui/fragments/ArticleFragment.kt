@@ -2,6 +2,8 @@ package com.now.gnews.ui.fragments
 
 import android.os.Bundle
 import android.view.View
+import android.webkit.WebResourceRequest
+import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
@@ -18,12 +20,26 @@ class ArticleFragment : Fragment(R.layout.fragment_article_view) {
 
         viewModel = (activity as MainActivity).viewModel
         val article = args.article
-        articleWebView.apply {
-            webViewClient = WebViewClient()
-            loadUrl(article.url)
+        articleWebView.webViewClient = WebViewClient()
+        articleWebView.loadUrl(article.url)
+        ArticleViewprogressBar.visibility = View.VISIBLE
+    }
+
+    inner class WebViewClient : android.webkit.WebViewClient() {
+        override fun shouldOverrideUrlLoading(
+            view: WebView?,
+            url: String
+        ): Boolean {
+            view?.loadUrl(url)
+            return false
         }
 
+        override fun onPageFinished(view: WebView?, url: String?) {
+            super.onPageFinished(view, url)
+            ArticleViewprogressBar.visibility = View.INVISIBLE
+        }
     }
+
 
 
 }

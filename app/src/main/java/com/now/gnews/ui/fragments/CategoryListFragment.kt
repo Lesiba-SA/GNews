@@ -24,6 +24,7 @@ class CategoryListFragment : Fragment(R.layout.fragment_category_list) {
         viewModel = (activity as MainActivity).viewModel
         setRecyclerView()
 
+        this.activity?.title = "Category List"
 
         cateListAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {

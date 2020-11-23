@@ -20,6 +20,8 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
 
     lateinit var viewModel: NewsViewModel
     lateinit var newsAdapter: NewsAdapter
+
+
     val args: CategoryFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -27,17 +29,21 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
         viewModel = (activity as MainActivity).viewModel
         setRecyclerView()
         val category = args.CateArgs.category
+        this.activity?.title = category
+        CateFragmentprogressBar.visibility = View.VISIBLE
 
         viewModel.getNewsFromCategory("us", category)
 
         viewModel.CategoryNews.observe(viewLifecycleOwner, Observer { response ->
             when(response) {
                 is Resource.Success -> {
+                    CateFragmentprogressBar.visibility = View.INVISIBLE
                     response.data?.let { nResponse ->
                         newsAdapter.differ.submitList(nResponse.articles)
                     }
                 }
                 is Resource.Error -> {
+                    CateFragmentprogressBar.visibility = View.INVISIBLE
                     response.message?.let { message ->{
                         Toast.makeText(activity, "Error $message", Toast.LENGTH_LONG)
                             .show()
@@ -46,7 +52,7 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
                     }
                 }
                 is Resource.Loading -> {
-
+                    CateFragmentprogressBar.visibility = View.VISIBLE
                 }
             }
         })

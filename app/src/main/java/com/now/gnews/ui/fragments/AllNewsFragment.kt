@@ -25,6 +25,9 @@ class AllNewsFragment : Fragment(R.layout.fragment_all_news) {
         viewModel = (activity as MainActivity).viewModel
         setRecyclerView()
 
+        this.activity?.title = "GNews"
+        AllNewsFragProgressBar.visibility = View.VISIBLE
+
         newsAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
                 putSerializable("article", it)
@@ -38,11 +41,13 @@ class AllNewsFragment : Fragment(R.layout.fragment_all_news) {
         viewModel.allNews.observe(viewLifecycleOwner, Observer { response ->
             when(response) {
                 is Resource.Success -> {
+                    AllNewsFragProgressBar.visibility = View.INVISIBLE
                     response.data?.let { nResponse ->
                         newsAdapter.differ.submitList(nResponse.articles)
                     }
                 }
                 is Resource.Error -> {
+                    AllNewsFragProgressBar.visibility = View.INVISIBLE
                     response.message?.let { message ->{
                         Toast.makeText(activity, "Error $message", Toast.LENGTH_LONG)
                             .show()
@@ -51,7 +56,7 @@ class AllNewsFragment : Fragment(R.layout.fragment_all_news) {
                     }
                 }
                 is Resource.Loading -> {
-
+                    AllNewsFragProgressBar.visibility = View.VISIBLE
                 }
             }
         })
