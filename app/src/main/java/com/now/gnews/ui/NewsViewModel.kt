@@ -15,6 +15,9 @@ class NewsViewModel(val newsRepo: NewsRepo) : ViewModel() {
   val allNews: MutableLiveData<Resource<ApiResponse>> = MutableLiveData()
     var pageNumber = 1
 
+    val CategoryNews: MutableLiveData<Resource<ApiResponse>> = MutableLiveData()
+    var CategoryPageNumber = 1
+
     init {
         getAllNews("us")
     }
@@ -26,7 +29,23 @@ class NewsViewModel(val newsRepo: NewsRepo) : ViewModel() {
         allNews.postValue(handleAllNewsResponse(response))
     }
 
+    fun getNewsFromCategory(country: String, category: String) = viewModelScope.launch {
+        CategoryNews.postValue(Resource.Loading())
+        val response = newsRepo.getNewsFromCat(country, CategoryPageNumber, category)
+        CategoryNews.postValue(handleCategoryNewsResponse(response))
+    }
+
+
     private fun handleAllNewsResponse(response: Response<ApiResponse>) : Resource<ApiResponse> {
+        if (response.isSuccessful) {
+            response.body()?.let { results ->
+                return Resource.Success(results)
+            }
+        }
+        return Resource.Error(response.message())
+    }
+
+    private fun handleCategoryNewsResponse(response: Response<ApiResponse>) : Resource<ApiResponse> {
         if (response.isSuccessful) {
             response.body()?.let { results ->
                 return Resource.Success(results)

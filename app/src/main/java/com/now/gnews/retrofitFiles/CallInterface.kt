@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface CallInterface {
 
-    @GET("v2/everything")
+    @GET("v2/top-headlines")
     suspend fun getAllNews(
         @Query("q")
         country: String = "us",
@@ -17,7 +17,7 @@ interface CallInterface {
         apikey: String = "3b3f5a9fc1074c238a5332b1127648b2"
     ) : Response<ApiResponse>
 
-    @GET("v2/everything")
+    @GET("v2/top-headlines")
     suspend fun getNewsFromCategory(
         @Query("q")
         country: String = "us",
