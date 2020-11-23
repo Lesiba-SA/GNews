@@ -44,10 +44,9 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
                 }
                 is Resource.Error -> {
                     CateFragmentprogressBar.visibility = View.INVISIBLE
-                    response.message?.let { message ->{
+                    response.message?.let { message ->
                         Toast.makeText(activity, "Error $message", Toast.LENGTH_LONG)
                             .show()
-                    }
 
                     }
                 }

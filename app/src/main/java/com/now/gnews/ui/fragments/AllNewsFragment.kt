@@ -48,10 +48,9 @@ class AllNewsFragment : Fragment(R.layout.fragment_all_news) {
                 }
                 is Resource.Error -> {
                     AllNewsFragProgressBar.visibility = View.INVISIBLE
-                    response.message?.let { message ->{
+                    response.message?.let { message ->
                         Toast.makeText(activity, "Error $message", Toast.LENGTH_LONG)
                             .show()
-                    }
 
                     }
                 }
